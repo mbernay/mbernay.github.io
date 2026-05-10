@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Michael Bernay Resume</title>
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
+
+  <style>
+    /* ===========================
+       Variables & Base
+       =========================== */
+    :root{
+      --bg: #111418;
+      --card: #20252d;
+      --muted: #9aa4b2;
+      --text: #e6eef6;
+      --accent: rgb(204, 12, 204); /* mint */
+      --accent-2: rgb(225, 70, 158); /* blue */
+      --glass: rgba(255,255,255,0.03);
+      --radius: 14px;
+      --max-width: 1100px;
+      --mono: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      --shadow: 0 6px 18px rgba(2,6,23,0.6);
+      --glass-border: rgba(255,255,255,0.04);
+      --transition: 240ms cubic-bezier(.2,.9,.3,1);
+    }
+
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg: #f5f7fb;
+        --card: #ffffff;
+        --muted: #68707a;
+        --text: #0b1220;
+        --glass: rgba(11,18,32,0.03);
+        --glass-border: rgba(11,18,32,0.06);
+        --shadow: 0 10px 30px rgba(11,18,32,0.06);
+      }
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--mono);
+      background:
+        radial-gradient(1200px 600px at 10% 15%, rgba(96,165,250,0.06), transparent 10%),
+        radial-gradient(900px 500px at 95% 85%, rgba(110,231,183,0.03), transparent 8%),
+        var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:32px;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+    }
+
+    /* container */
+    .wrap{
+      width:100%;
+      max-width:var(--max-width);
+      display:grid;
+      gap:28px;
+      grid-template-columns: 360px 1fr;
+      align-items:start;
+    }
+
+    @media (max-width:980px){
+      .wrap{grid-template-columns: 1fr; padding:0 8px}
+    }
+
+    /* ===========================
+       Sidebar (left column)
+       =========================== */
+    .sidebar{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border:1px solid var(--glass-border);
+      border-radius:var(--radius);
+      padding:28px;
+      box-shadow:var(--shadow);
+      position:sticky;
+      top:28px;
+      height:fit-content;
+      min-height:280px;
+    }
+
+    .photo{
+      width:110px;
+      height:110px;
+      border-radius:18px;
+      overflow:hidden;
+      margin-bottom:16px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.35);
+      border:2px solid rgba(255,255,255,0.04);
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:rgba(10,12,20,0.06);
+      font-weight:700;
+      font-size:36px;
+    }
+
+    h1{
+      margin:0 0 6px 0;
+      font-size:20px;
+      letter-spacing:0.2px;
+    }
+    .title-sub{
+      margin:0 0 14px 0;
+      color:var(--muted);
+      font-size:13px;
+      font-weight:500;
+    }
+
+    .contact, .education{
+      margin-top:18px;
+    }
+    .skills-grid{
+      display:grid;
+      gap:10px;
+      grid-template-columns:repeat(2,1fr);
+    }
+    .skills{
+    background: var(--glass);
+    padding:8px 10px;
+    border-radius:999px;
+    border:1px solid var(--glass-border);
+    font-size:13px;
+    text-align:center;
+  }
+
+    .meta{
+      display:flex;
+      gap:10px;
+      flex-direction:row;
+      font-size:14px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    a.chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:var(--glass);
+      border-radius:999px;
+      padding:8px 10px;
+      color:var(--text);
+      text-decoration:none;
+      font-size:13px;
+      transition:transform var(--transition), background var(--transition);
+      border:1px solid var(--glass-border);
+    }
+    a.chip:hover{transform:translateY(-4px)}
+
+    .socials{
+      display:flex;
+      gap:10px;
+      margin-top:14px;
+    }
+    .socials a{
+      width:40px;height:40px;display:inline-grid;place-items:center;border-radius:10px;
+      background:var(--glass); border:1px solid var(--glass-border); text-decoration:none;
+      transition:transform var(--transition);
+    }
+    .socials a:hover{transform:translateY(-4px)}
+
+    .small {font-size:13px;color:var(--muted)}
+
+    /* ===========================
+       Main column
+       =========================== */
+    .main{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border:1px solid var(--glass-border);
+      border-radius:var(--radius);
+      padding:28px;
+      box-shadow:var(--shadow);
+    }
+
+    .hero{
+      display:flex;
+      gap:20px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .hero-left{
+      min-width:0;
+    }
+    .hero .role{
+      color:var(--accent);
+      font-weight:700;
+      font-size:13px;
+      letter-spacing:0.6px;
+      text-transform:uppercase;
+    }
+    .hero h2{margin:6px 0 10px 0;font-size:22px}
+    .hero p{margin:0;color:var(--muted)}
+
+    .actions{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      margin-top:8px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      border:0;padding:10px 14px;border-radius:10px;cursor:pointer;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:#06203a;font-weight:600; text-decoration:none;
+      box-shadow:0 10px 30px rgba(96,165,250,0.08);
+      transition:transform var(--transition), box-shadow var(--transition);
+    }
+    .btn.secondary{
+      background:transparent;color:var(--text);border:1px solid var(--glass-border);
+      box-shadow:none;
+    }
+    .btn:hover{transform:translateY(-6px)}
+
+    /* summary / about */
+    .about{
+      margin-top:18px;
+    }
+
+    /* experience list */
+    .timeline{
+      margin-top:18px;
+      display:grid;
+      gap:18px;
+    }
+    .job{
+      padding:14px;border-radius:12px;background:var(--card);border:1px solid var(--glass-border);
+      display:grid;
+      grid-template-columns: 1fr 140px;
+      gap:12px;
+      align-items:start;
+    }
+    .job .meta{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:13px}
+    .job h3{margin:0;font-size:14px}
+    .job .company{color:var(--muted);font-size:13px;margin-top:4px}
+    .job .dates{color:var(--muted);font-size:13px;text-align:right}
+    .job p{margin:0;color:var(--muted);font-size:14px}
+
+    /* project items */
+    .project-item{
+      background:var(--card);
+      padding:14px;
+      border-radius:12px;
+      border:1px solid var(--glass-border);
+      margin-bottom:14px;
+    }
+    .project-item h4{
+      margin:0;
+      font-size:15px;
+      font-weight:600;
+    }
+    .project-item .project-meta{
+      color:var(--muted);
+      font-size:13px;
+      margin-top:4px;
+    }
+    .project-item p{
+      margin:8px 0 0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.5;
+    }
+    .project-tags{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+    .project-tag{
+      font-size:12px;
+      padding:6px 8px;
+      border-radius:8px;
+      border:1px solid var(--glass-border);
+      background:var(--glass);
+    }
+
+    /* portfolio grid */
+    .projects{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      margin-top:18px;
+    }
+    @media (max-width:780px){ .projects{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:480px){ .projects{grid-template-columns:1fr} }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);
+      border-radius:12px;padding:12px;border:1px solid var(--glass-border);
+      transition:transform var(--transition), box-shadow var(--transition);
+    }
+    .card:hover{transform:translateY(-6px); box-shadow:0 14px 40px rgba(2,6,23,0.45)}
+
+    .project-thumb{height:110px;border-radius:8px;background-size:cover;background-position:center;margin-bottom:10px}
+
+    /* footer / contact CTA */
+    .contact-cta{
+      margin-top:22px;
+      padding:14px;border-radius:12px;background:linear-gradient(90deg, rgba(96,165,250,0.06), rgba(110,231,183,0.03));
+      border:1px solid rgba(255,255,255,0.02);
+    }
+
+    /* small print and print-friendly */
+    .print-hide{display:inline-block}
+    @media print{
+      body{background:white;color:black;padding:0}
+      .wrap{grid-template-columns:1fr}
+      .sidebar{display:none}
+      .print-hide{display:none}
+      .main{border:0;box-shadow:none;padding:0}
+    }
+
+    /* little utilities */
+    .muted{color:var(--muted)}
+    .caps{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+    .divider{height:1px;background:var(--glass-border);margin:18px 0;border-radius:2px}
+    .inline{display:inline-flex;gap:8px;align-items:center}
+    /* accessibility: focus */
+    a:focus, button:focus {outline:3px solid rgba(96,165,250,0.18); outline-offset:3px}
+
+  </style>
+</head>
+<body>
+  <div class="wrap" role="main">
+    <!-- SIDEBAR -->
+    <aside class="sidebar" aria-labelledby="name">
+      <div class="photo">
+        <img src="me.jpg" alt="Michael Bernay" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <h1 id="name">Michael Bernay</h1>
+      <div class="title-sub">Senior Computer Science Student</div>
+
+      <div class="contact">
+        <div class="caps">Contact</div>
+        <div class="meta" style="margin-top:8px">
+          <a class="chip" href="mailto:bernaymichael@gmail.com">✉ bernaymichael@gmail.com</a>
+          <div class="small muted">Location: Athens, OH | Columbus, OH</div>
+        </div>
+
+        <div class="socials" aria-label="social links" style="margin-top:12px">
+          <a href="https://github.com/mbernay" title="GitHub" aria-label="GitHub">
+            <!-- svg icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C6.48 2 2 6.58 2 12.18c0 4.52 2.87 8.36 6.84 9.72.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.38-3.37-1.38-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.58 2.36 1.12 2.94.85.09-.66.35-1.12.64-1.38-2.22-.26-4.56-1.15-4.56-5.08 0-1.12.39-2.03 1.03-2.75-.1-.25-.45-1.28.1-2.66 0 0 .84-.27 2.75 1.05A9.24 9.24 0 0112 6.8c.85.0 1.71.11 2.5.33 1.9-1.32 2.74-1.05 2.74-1.05.56 1.38.21 2.41.1 2.66.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.82-4.57 5.07.36.31.68.92.68 1.86 0 1.35-.01 2.44-.01 2.77 0 .26.18.57.69.47A10.2 10.2 0 0022 12.18C22 6.58 17.52 2 12 2z" fill="currentColor"></path>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/in/michaelbernay/" title="LinkedIn" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4.98 3.5C4.98 4.6 4.12 5.5 3 5.5 1.9 5.5 1 4.6 1 3.5S1.9 1.5 3 1.5c1.12 0 1.98.9 1.98 2zM.5 8.25H5.5V23.5H.5zM8.5 8.25H13v2.06c.66-1.2 2.29-2.46 4.7-2.46 5.03 0 5.95 3.31 5.95 7.62V23.5H18.5v-6.57c0-1.57-.03-3.59-2.2-3.59-2.2 0-2.54 1.72-2.54 3.48V23.5H8.5z" fill="currentColor"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="divider" role="presentation"></div>
+
+      <div>
+        <div class="caps">Skills</div>
+        <div class="skills-grid" style="margin-top:10px">
+          <div class="skills">C++</div>
+          <div class="skills">Python</div>
+          <div class="skills">Docker</div>
+          <div class="skills">AI/ML</div>
+          <div class="skills">Cybersecurity</div>
+          <div class="skills">SQL</div>
+          <div class="skills">Cloud Platforms</div>
+          <div class="skills">DevOps</div>
+          <div class="skills">HTML & CSS</div>
+          <div class="skills">GitHub</div>
+        </div>
+      </div>
+
+      <div class="education">
+        <div class="caps" style="margin-bottom:8px">Education</div>
+        <div class="small muted">B.S. Computer Science — Ohio University (2026)</div>
+      </div>
+
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+      <section class="hero" aria-labelledby="intro">
+        <div class="hero-left">
+          <div class="role">Software Engineer</div>
+          <h2 id="intro">Computer science student with diverse interests and skills in various fields of computer science</h2>
+          <p class="muted">I enjoy creating software, building apps, and learning new technologies. Currently working with AI/ML, cloud computing, and full-stack development.</p>
+
+          <div class="actions">
+            <a class="btn" href="#projects">View work</a>
+            <a class="btn secondary" href="Bernay - Resume 2025.pdf" download="">Download PDF</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="about">
+        <div class="caps">Summary</div>
+        <p style="margin-top:8px;color:var(--muted)">
+          As a senior computer science student, I've developed strong programming skills through coursework and personal projects. I'm passionate about exploring different areas of technology, from AI/ML to cloud computing, and I enjoy building solutions that solve real problems.
+        </p>
+      </div>
+
+      <div class="divider" role="presentation"></div>
+
+      <section aria-labelledby="experience">
+        <div class="caps">Experience</div>
+        <div class="timeline" style="margin-top:10px">
+
+          <article class="job" aria-labelledby="job1">
+            <div>
+              <h3>IT Service Desk Student Technician II</h3>
+              <div class="company">Ohio University Office of Information Technology</div>
+            </div>
+            <div class="dates">Mar 2024 — Present</div>
+            <ul style="margin:10px 0 0 0;padding-left:18px;color:var(--muted);font-size:13px;line-height:1.5;grid-column:1/-1">
+              <li>Promoted to a leadership role for technical expertise, customer service, managing software installations, device maintenance, and troubleshooting for university equipment.</li>
+              <li>Integrated Call Center Tech Desk duties post-merger (Jan 2025), gaining hands-on experience with Azure, Cisco Systems, and Identity Management (IDM) for account security and network operations.</li>
+              <li>Conduct performance evaluations, liaise between student staff and full-time IT personnel, report outages, and oversee laptop imaging and deployment for the university loaner program.</li>
+            </ul>
+          </article>
+
+          <article class="job" aria-labelledby="job2">
+            <div>
+              <h3>IT Service Desk Student Technician I</h3>
+              <div class="company">Ohio University Office of Information Technology</div>
+            </div>
+            <div class="dates">Oct 2023 — Mar 2024</div>
+            <ul style="margin:10px 0 0 0;padding-left:18px;color:var(--muted);font-size:13px;line-height:1.5;grid-column:1/-1">
+              <li>Provided support for hardware, software, and network issues, ensuring high customer satisfaction.</li>
+              <li>Diagnosed and resolved user-reported technical problems through critical thinking.</li>
+              <li>Assisted students and faculty with password resets, account security, and software installations. </li>
+            </ul>
+          </article>
+      </section>
+
+      <div class="divider" role="presentation"></div>
+
+      <section id="projects" aria-labelledby="projects-heading">
+        <div class="caps">Selected Projects</div>
+        
+        <div class="timeline" style="margin-top:12px">
+          <article class="project-item" aria-labelledby="proj1">
+            <h4 id="proj1">AI-Powered Phishing Email Detector</h4>
+            <div class="project-meta">Personal Project · AI/ML · Cybersecurity</div>
+            <p>Built a phishing detection tool that leverages Gemini to analyze emails, identify suspicious patterns, and provide explainable security insights.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">AI/ML</span>
+              <span class="project-tag">Cybersecurity</span>
+              <span class="project-tag">Gemini API</span>
+            </div>
+          </article>
+
+          <article class="project-item" aria-labelledby="proj2">
+            <h4 id="proj2">Personal Media Server</h4>
+            <div class="project-meta">Personal Project · DevOps</div>
+            <p>Deployed and maintained a self-hosted streaming platform using Jellyfin, including server administration, containerization using Docker, and network configuration.</p>
+            <div class="project-tags">
+              <span class="project-tag">Docker</span>
+              <span class="project-tag">Linux</span>
+              <span class="project-tag">Networking</span>
+              <span class="project-tag">DevOps</span>
+            </div>
+          </article>
+
+          <article class="project-item" aria-labelledby="proj3">
+            <h4 id="proj3">Perceptron Machine Learning Model</h4>
+            <div class="project-meta">Academic Project · AI/ML</div>
+            <p>Optimized a perceptron machine learning model using a cancer dataset to recognize different types of cancer (breast cancer, lung cancer, and prostate cancer).</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">AI/ML</span>
+              <span class="project-tag">Data Science</span>
+            </div>
+          </article>
+          <article class="project-item" aria-labelledby="proj4">
+            <h4 id="proj4">Wordle Game Recreation</h4>
+            <div class="project-meta">Academic Project · Team of 4 · Full-Stack Development</div>
+            <p>Developed a recreation and variant of the popular online word game "Wordle" with references to Ohio University with a group</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">Full-Stack</span>
+              <span class="project-tag">Game Development</span>
+            </div>
+          </article>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    // tiny: animate skill bars on load / when visible
+    (function(){
+      const bars = document.querySelectorAll('.bar > i');
+      const onVisible = (el) => {
+        const rect = el.getBoundingClientRect();
+        return rect.top < window.innerHeight && rect.bottom >= 0;
+      };
+      const run = () => bars.forEach(b => {
+        if (onVisible(b) && !b.dataset.animated) {
+          b.style.width = b.style.width; // keep inline width
+          // trigger reflow so transition runs:
+          void b.offsetWidth;
+          b.dataset.animated = '1';
+        }
+      });
+      // set initial widths from inline style (already set in HTML)
+      // but ensure they animate: set to 0 then restore
+      bars.forEach(b => {
+        const w = b.style.width || '60%';
+        b.style.width = '0%';
+        b.dataset.target = w;
+      });
+      const tryAnimate = () => bars.forEach(b => {
+        if (onVisible(b) && b.style.width === '0%') {
+          b.style.width = b.dataset.target;
+        }
+      });
+      window.addEventListener('load', tryAnimate);
+      window.addEventListener('scroll', tryAnimate, {passive:true});
+      // smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', (e) => {
+          const tgt = document.querySelector(a.getAttribute('href'));
+          if (tgt){ e.preventDefault(); tgt.scrollIntoView({behavior:'smooth', block:'start'}); }
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
