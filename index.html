@@ -70,7 +70,7 @@
     }
 
     @media (max-width:980px){
-      .wrap{grid-template-columns: 1fr; padding:0 8px}
+      .wrap{grid-template-columns: 1fr}
     }
 
     /* ===========================
@@ -329,6 +329,23 @@
     /* accessibility: focus */
     a:focus, button:focus {outline:3px solid rgba(96,165,250,0.18); outline-offset:3px}
 
+    /* ===========================
+       Phones / single column
+       (kept last so these win over the base rules above)
+       =========================== */
+    @media (max-width:980px){
+      /* let the sidebar scroll away instead of pinning over the content */
+      .sidebar{position:static}
+    }
+    @media (max-width:600px){
+      body{padding:16px}
+      .wrap{gap:16px}
+      .sidebar, .main{padding:20px}
+      .job{grid-template-columns:1fr; gap:4px}
+      .job .dates{text-align:left}
+      .hero h2{font-size:20px}
+    }
+
   </style>
 </head>
 <body>
@@ -441,6 +458,7 @@
               <li>Assisted students and faculty with password resets, account security, and software installations. </li>
             </ul>
           </article>
+        </div>
       </section>
 
       <div class="divider" role="presentation"></div>
@@ -494,7 +512,7 @@
             </div>
           </article>
         </div>
-      </div>
+      </section>
 
     </main>
   </div>
